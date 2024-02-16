@@ -3,7 +3,7 @@ import { useReadContract, useWriteContract } from "wagmi"
 const MINER_CONTRACT_ADDRESS:`0x${string}` =`0x`
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
 import { readContract } from "wagmi/actions"
-function ProposeProposal(){
+export default function ProposeProposal(){
 
     const {writeContractAsync,data:hash,reset} = useWriteContract({config})
    

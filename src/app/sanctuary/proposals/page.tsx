@@ -1,11 +1,11 @@
 import { config } from "@/wagmi"
 import { useReadContract, useWriteContract } from "wagmi"
-const SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS:`0x${string}` =`0x`
-import * as sancNftMarketPlaceInfo from '@/abi/SancNFTMarketPlace.json'
+
 import { useEffect, useState } from "react"
 import { readContract } from "wagmi/actions"
-
-function SanctuaryProposals(){
+const MINER_CONTRACT_ADDRESS:`0x${string}` =`0x`
+import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
+export default function SanctuaryProposals(){
 
     const [fundableProposals,setFundableProposals] = useState<Proposal[]>([])
 
@@ -19,8 +19,8 @@ function SanctuaryProposals(){
     async function invest(proposal:Proposal,amount:string) {
         try{
             const txn = await writeContractAsync({
-                address:SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS,
-                abi:sancNftMarketPlaceInfo.abi,
+                address:MINER_CONTRACT_ADDRESS,
+                abi:sancNftMinterInfo.abi,
                 functionName:"invest",
                 args:[
                     0,//for now
@@ -34,8 +34,8 @@ function SanctuaryProposals(){
     
 async function loadProposals() {
     const result:any = await readContract(config,{
-        address:SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS,
-        abi :sancNftMarketPlaceInfo.abi ,
+        address:MINER_CONTRACT_ADDRESS,
+        abi :sancNftMinterInfo.abi ,
         functionName:"getFundableProposalsOf",
         args:[0]
     })
