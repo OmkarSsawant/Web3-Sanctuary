@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { readContract } from "wagmi/actions";
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
 import { useWriteContract } from "wagmi";
-import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos";
+import { MINTER_CONTRACT_ADDRESS } from "@/data/contract_infos";
 import Link from "next/link";
 
 //TODO:Should direct transfer to dealer availed?
@@ -19,7 +19,7 @@ export default function SancDashboard(){
 
     async function withdrawAllCrowdFunds() {
         const txn = await writeContractAsync({
-            address:MINER_CONTRACT_ADDRESS,
+            address:MINTER_CONTRACT_ADDRESS,
             abi:sancNftMinterInfo.abi,
             functionName:"withdrawCrowFund",
             args:[0]})
@@ -30,7 +30,7 @@ export default function SancDashboard(){
    
     async function withdrawProposalGain(proposal:Proposal) {
         const txn = await writeContractAsync({
-            address:MINER_CONTRACT_ADDRESS,
+            address:MINTER_CONTRACT_ADDRESS,
             abi:sancNftMinterInfo.abi,
             functionName:"withdrawProposalGain",
             args:[0,proposal.PID]})
@@ -46,7 +46,7 @@ export default function SancDashboard(){
     async function  loadCompletedProposals() {
        const cps:any =  await readContract(config,
             {
-                address:MINER_CONTRACT_ADDRESS,
+                address:MINTER_CONTRACT_ADDRESS,
                 abi:sancNftMinterInfo.abi,
                 functionName:'getComepletedProposalsOf',
                 args:[0]
@@ -61,7 +61,7 @@ export default function SancDashboard(){
         try{
             const df = (await readContract(config,
                 {
-                    address:MINER_CONTRACT_ADDRESS,
+                    address:MINTER_CONTRACT_ADDRESS,
                     abi:sancNftMinterInfo.abi,
                     functionName:'getCrowdFundOf',
                     args:[0]
@@ -70,7 +70,7 @@ export default function SancDashboard(){
     
             const cf = (await readContract(config,
                 {
-                    address:MINER_CONTRACT_ADDRESS,
+                    address:MINTER_CONTRACT_ADDRESS,
                     abi:sancNftMinterInfo.abi,
                     functionName:'getCommisionFundOf',
                     args:[0]

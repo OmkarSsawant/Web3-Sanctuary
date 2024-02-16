@@ -1,6 +1,6 @@
 'use client'
 
-import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos";
+import { MINTER_CONTRACT_ADDRESS } from "@/data/contract_infos";
 import { config } from "@/wagmi";
 import { useRouter } from "next/router";
 import { useWriteContract } from "wagmi";
@@ -14,7 +14,7 @@ export default function SanctuaryInfo({params}:{params:{slug:string}}){
         console.log("Successfully Donated!",parseFloat(amount) * (10**18));
 
         const txn = await writeContractAsync({
-            address:MINER_CONTRACT_ADDRESS,
+            address:MINTER_CONTRACT_ADDRESS,
             abi:sancNftMinterInfo.abi,
             functionName:"crowdFund",
             args:[

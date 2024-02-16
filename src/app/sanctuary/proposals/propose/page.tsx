@@ -3,7 +3,7 @@ import { config } from "@/wagmi"
 import { useReadContract, useWriteContract } from "wagmi"
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
 import { readContract } from "wagmi/actions"
-import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos"
+import { MINTER_CONTRACT_ADDRESS } from "@/data/contract_infos"
 export default function ProposeProposal(){
 
     const {writeContractAsync,data:hash,reset} = useWriteContract({config})
@@ -11,7 +11,7 @@ export default function ProposeProposal(){
    async function propose(proposal:Proposal) {
         try{
             const txn = await writeContractAsync({
-                address:MINER_CONTRACT_ADDRESS,
+                address:MINTER_CONTRACT_ADDRESS,
                 abi:sancNftMinterInfo.abi,
                 functionName:"uploadProposal",
                 args:[
@@ -26,14 +26,14 @@ export default function ProposeProposal(){
             })
             reset()
             const lastProposalId = await readContract(config,{
-                address:MINER_CONTRACT_ADDRESS,
+                address:MINTER_CONTRACT_ADDRESS,
                 abi:sancNftMinterInfo.abi,
                 functionName:"getLastProposalOf",
                 args:[0]
             })
 
             const nftTxn = await writeContractAsync({
-                address:MINER_CONTRACT_ADDRESS,
+                address:MINTER_CONTRACT_ADDRESS,
                 abi:sancNftMinterInfo.abi,
                 functionName:"setNftDetails",
                 args:[

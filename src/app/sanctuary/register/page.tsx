@@ -1,6 +1,6 @@
 'use client'
 
-import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos";
+import { MINTER_CONTRACT_ADDRESS } from "@/data/contract_infos";
 import { config } from "@/wagmi";
 import { useRouter } from "next/router";
 import { useWriteContract } from "wagmi";
@@ -16,7 +16,7 @@ export default function RegisterSanctuary(){
     ) {
 
         const txn = await writeContractAsync({
-            address:MINER_CONTRACT_ADDRESS,
+            address:MINTER_CONTRACT_ADDRESS,
             abi:sancNftMinterInfo.abi,
             functionName:"registerSanctuary",
             args:[

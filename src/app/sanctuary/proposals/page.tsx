@@ -6,7 +6,7 @@ import { useReadContract, useWriteContract } from "wagmi"
 import { useEffect, useState } from "react"
 import { readContract } from "wagmi/actions"
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
-import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos"
+import { MINTER_CONTRACT_ADDRESS } from "@/data/contract_infos"
 import Link from "next/link"
 export default function SanctuaryProposals(){
 
@@ -22,7 +22,7 @@ export default function SanctuaryProposals(){
     async function invest(proposal:Proposal,amount:string) {
         try{
             const txn = await writeContractAsync({
-                address:MINER_CONTRACT_ADDRESS,
+                address:MINTER_CONTRACT_ADDRESS,
                 abi:sancNftMinterInfo.abi,
                 functionName:"invest",
                 args:[
@@ -37,7 +37,7 @@ export default function SanctuaryProposals(){
     
 async function loadProposals() {
     const result:any = await readContract(config,{
-        address:MINER_CONTRACT_ADDRESS,
+        address:MINTER_CONTRACT_ADDRESS,
         abi :sancNftMinterInfo.abi ,
         functionName:"getFundableProposalsOf",
         args:[0]
