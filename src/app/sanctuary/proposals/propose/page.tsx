@@ -1,8 +1,9 @@
+'use client';
 import { config } from "@/wagmi"
 import { useReadContract, useWriteContract } from "wagmi"
-const MINER_CONTRACT_ADDRESS:`0x${string}` =`0x`
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
 import { readContract } from "wagmi/actions"
+import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos"
 export default function ProposeProposal(){
 
     const {writeContractAsync,data:hash,reset} = useWriteContract({config})

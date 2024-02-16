@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useAccount, useWriteContract } from "wagmi"
-const SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS:`0x${string}` =`0x`
 import * as sancNftMarketPlaceInfo from '@/abi/SancNFTMarketPlace.json'
 import { config } from "@/wagmi"
 import { readContract } from "wagmi/actions"
+import { SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS } from "@/data/contract_infos"
 
 export function UserNfts() {
     const [listedNfts,setListedNFTs] = useState<NftItem[]>([])

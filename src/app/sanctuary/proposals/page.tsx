@@ -1,10 +1,13 @@
+'use client'
+
 import { config } from "@/wagmi"
 import { useReadContract, useWriteContract } from "wagmi"
 
 import { useEffect, useState } from "react"
 import { readContract } from "wagmi/actions"
-const MINER_CONTRACT_ADDRESS:`0x${string}` =`0x`
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
+import { MINER_CONTRACT_ADDRESS } from "@/data/contract_infos"
+import Link from "next/link"
 export default function SanctuaryProposals(){
 
     const [fundableProposals,setFundableProposals] = useState<Proposal[]>([])
@@ -26,7 +29,7 @@ export default function SanctuaryProposals(){
                     0,//for now
                     proposal.PID 
                 ],
-                value: BigInt(parseFloat(amount) * 10^18)
+                value: BigInt(parseFloat(amount) * (10**18))
             })
             
         }catch(e){}
@@ -47,6 +50,7 @@ async function loadProposals() {
 
 
 return (<>
+<Link href='/sanctuary/proposals/propose'>Upload Proposal</Link>
     {fundableProposals}
 </>)
 

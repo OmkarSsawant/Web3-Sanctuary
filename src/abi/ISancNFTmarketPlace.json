@@ -9,6 +9,25 @@
           "internalType": "uint256",
           "name": "sancId",
           "type": "uint256"
+        }
+      ],
+      "name": "getSancCommisonFund",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "sancId",
+          "type": "uint256"
         },
         {
           "internalType": "uint256",

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
         <div>{status}</div>
         <div>{error?.message}</div>
       </div>
+
+      <Link href='/sanctuary'  >Sanctuary</Link>
+
     </>
   )
 }

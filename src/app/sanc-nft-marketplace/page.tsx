@@ -1,9 +1,9 @@
 import { useReadContract, useWriteContract } from "wagmi";
-const SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS:`0x${string}` =`0x`
 import * as sancNftMarketPlaceInfo from '@/abi/SancNFTMarketPlace.json'
 import { useEffect, useState } from "react";
 import { readContract } from "wagmi/actions";
 import { config } from "@/wagmi";
+import { SANC_NFT_MARKET_PLACE_CONTRACT_ADDRESS } from "@/data/contract_infos";
 
 export default function SancNFTMarketPlace(){
     const [nftItems,setNftItems] = useState<NftItem[]>([])
@@ -19,7 +19,7 @@ export default function SancNFTMarketPlace(){
             abi:sancNftMarketPlaceInfo.abi,
             functionName:"buy",
             args:[0,item.NID],
-            value: BigInt(parseFloat(amount) * 10^18)
+            value: BigInt(parseFloat(amount) * (10**18))
         })
         console.log(txn,"NFT");
     }
