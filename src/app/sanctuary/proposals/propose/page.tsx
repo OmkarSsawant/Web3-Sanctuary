@@ -6,18 +6,8 @@ import { readContract } from "wagmi/actions"
 function ProposeProposal(){
 
     const {writeContractAsync,data:hash,reset} = useWriteContract({config})
-
+   
    async function propose(proposal:Proposal) {
-
-    /*
-  uint _sancId,
-        string memory _name,
-        string memory _importAddress,
-        uint _poolAmount,
-        uint _deadline,
-        string memory _animalDetails,
-        uint _minAmount
-    */
         try{
             const txn = await writeContractAsync({
                 address:MINER_CONTRACT_ADDRESS,
