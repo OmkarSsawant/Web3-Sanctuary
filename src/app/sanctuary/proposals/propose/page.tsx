@@ -4,10 +4,19 @@ import { useReadContract, useWriteContract } from "wagmi"
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
 import { readContract } from "wagmi/actions"
 import { MINTER_CONTRACT_ADDRESS } from "@/data/contract_infos"
+import { create, globSource } from 'kubo-rpc-client'
+import { useEffect, useState } from "react";
+
 export default function ProposeProposal(){
 
     const {writeContractAsync,data:hash,reset} = useWriteContract({config})
-   
+    const [cid,setCID]  = useState("")
+
+    async function uploadFile(f:File) {
+        const kubo = create()
+        setCID((await kubo.add(f)).cid.toString())
+    }
+    
    async function propose(proposal:Proposal) {
         try{
             const txn = await writeContractAsync({

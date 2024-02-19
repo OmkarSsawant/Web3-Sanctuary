@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useWriteContract } from "wagmi";
 import * as sancNftMinterInfo from '@/abi/SancNFTMinter.json'
 
-//How can Only Sanctuary Owners be identified and only allowed
 export default function RegisterSanctuary(){
 
     const {writeContractAsync,data:hash,reset} = useWriteContract({config})
